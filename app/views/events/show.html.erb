@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <div class='row-fluid'>
+    <div class='span2 well'>
+      <%= render "shared/nav" %>
+    </div>
+    <div class='span5 well'>
+      <%= render "shared/event" %>
+
+        <!-- Only the creator of the event should be able to modify the events-->
+        <% if @original_organizer == current_organizer %>
+          <%= link_to @event , :method => :delete, data: { confirm: 'Are you sure?' },
+                      :class => "btn btn-warning btn-right" do %>
+            <i class="icon-trash"></i>&nbsp; Delete
+          <% end %>
+
+          <%=  link_to edit_organizer_event_path(@event), :class=>"btn btn-info btn-right" do %>
+            <i class="icon-edit"></i>&nbsp; Edit
+          <% end %>
+        <% end %>
+
+        <br>
+        <% if current_user && (!(current_user.has_existing_pmu?(@event.id)))%>
+          <a id="validation" class="btn btn-success btn-right"><i class="icon-ok icon-large"></i>&nbsp;&nbsp;Confirm & Create Request</a>
+        <% end %>
+      <br>
+    </div>
+
+    <% if current_user %>
+        <% if current_user.has_existing_pmu?(@event.id) %>
+            <div class='span5 well'>
+                <div class="page-header"><h3>Request Information</h3></div>
+                  <% if current_user.has_own_pmu?(@event.id) %>
+                      <% if @pmu.is_uncommitted? %>
+                          <%= render :template => 'events/show_user_uncommitted' %>
+                      <% else %>
+                           <%= render :template => 'events/show_user_driving' %>
+                      <% end %>
+                  <% else %>
+                      <%= render :template => 'events/show_user_committed' %>
+                  <% end %>
+            </div>
+        <% end %>
+    <% end %>
+
+  </div>
+</div>
+
+<!-- Validation Modal-->
+<div class="container">
+  <div id="validation_modal" class="modal hide fade in" style="display: none; ">
+    <div class="modal-header">
+      <a class="close" data-dismiss="modal">×</a>
+      <span class="font_walkway"><h3>Ticket Validation</h3></span>
+    </div>
+    <form id="validation_form">
+        <div class="modal-body">
+          <p>
+            <strong>Please type in your ticket Serial Number</strong><br>
+            This is to actually verify that you are attending the event
+          </p>
+          <label for="validation_code"><strong>Validation Code</strong></label>
+          <input id="validation_code" type="text" name="validation_code" size="15" />
+          <span id="info_validation" class="hideInfo"></span>
+
+          <input type="hidden" name="event" id="event" value="<%= @event.id %>" />
+        </div>
+        <div class="modal-footer">
+          <input id="validation_button" class="btn btn-info" type="submit" value="Confirm"/>
+        </div>
+    </form>
+  </div>
+</div>

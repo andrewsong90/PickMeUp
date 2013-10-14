@@ -1,0 +1,14 @@
+<!-- labels that show the request status -->
+<% if @pmu.car_sharing %>
+    <% if @pmu.pmu_type!="uncommitted" %>
+        <div class="label label-blue">Driving</div>
+    <% else %>
+        <div class="label label-orange">Car Sharing</div>
+    <% end %>
+<% end %>
+
+<% if @pmu.cab_sharing %>
+    <div class="label label-green">Cab Sharing</div>
+<% end %>
+<br><br>
+

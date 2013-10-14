@@ -1,0 +1,23 @@
+
+<!-- PMU confirmation code page -->
+<div class="header"><i class="icon-lock"></i>&nbsp;&nbsp;PMU confirmation code </div>
+<ul class="content">
+  <%= current_user.get_confirmation_code(@pmu) %>
+  &nbsp;&nbsp;<a href="#" id="pmu_about_code_modal_toggle" title="What's this?"><i class="icon-question-sign"></i></a>
+</ul>
+<div class="header"><i class="icon-ok-sign"></i>&nbsp;&nbsp;PMU confirmation status </div>
+<ul class="content">
+  <% if format_confirmation_status(current_user, @pmu)=="Confirmed" %>
+      <label class="label label-success">Confirmed</label><br>
+      <% pmu = current_user.user_pmus.where(:pmu_id => @pmu).first %><br>
+      <label class="label label-info">Current location</label>
+      <p>
+        <a href='<%= get_google_map_link(pmu.latitude, pmu.longitude) %>' target="_blank" title="Click to see the enlarged version">
+          <%= image_tag get_google_map_image_link(pmu.latitude, pmu.longitude) %>
+        </a>
+      </p>
+      <i class="icon-map-marker"></i>&nbsp;&nbsp;<%=  pmu.location %>
+  <% else %>
+      <label class="label label-important">Not Confirmed</label><br>
+  <% end %>
+</ul>

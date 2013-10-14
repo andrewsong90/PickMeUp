@@ -1,0 +1,57 @@
+
+<div class="header">You have requested for </div>
+
+<%= render 'shared/pmuLabel' %>
+<a href='<%= event_pmu_path(:event_id => @pmu.event.id, :id => @pmu.id) %>' class="btn btn-info btn-right"><i class="icon-briefcase"></i>&nbsp;Details</a>
+
+<br><br>
+
+<% if @pmu.requesting_users.size > 0 %>
+    <div class="header">Cab Sharing Requests</div>
+    <ul>
+    <% @pmu.requesting_users.each do |user| %>
+       <li class="list">
+        <%= format_text_cab_proposer(user) %>
+         <%= link_to "Decline",
+                           remove_requesting_user_event_pmu_path(:event_id => @pmu.event.id, :id => @pmu.id,:user_id => user.id), :method => :delete, :class => "btn btn-warning btn-right" %>
+         <%= link_to "Accept",
+                     create_new_cab_trip_event_pmu_path(:event_id => @pmu.event_id, :id => @pmu.id, :user_id => user.id), :class => "btn btn-info btn-right" %>
+       </li>
+      <% end %>
+    </ul>
+<% end %>
+
+ <br>
+
+    <!-- TODO: Can you asscess session variable from the view ?? -->
+  <div class="header"><i class="icon-tags"></i>&nbsp;&nbsp;&nbsp;Find your partners!</div>
+  <%= form_tag event_path(@event), id:"name_search" do %>
+    <ul>
+      <%= text_field_tag :search, params[:search], id:'search_box', placeholder: 'Enter Name' %>
+      <%= button_tag(name: 'nil', type: 'submit', class: 'btn btn-primary') do %>
+        <i class="icon-search"></i>&nbsp;   Search
+      <% end %>
+    </ul>
+    <br>
+    <ul>
+        <span class="content"><strong>Filter by</strong></span>
+        <ul>
+            <div class="content-align2">
+                <span class="content"><i class="icon-facebook-sign"></i>&nbsp;&nbsp;friends</span>
+                <%= check_box_tag "friends", 'friends', session[:friends] == 'friends', id: 'friends' %>
+            </div>
+            <div class="content-align">
+              <span class="content">Distance&nbsp;<%= select_tag 'location',
+               options_for_select(%w{5 10 15 20}, session[:location].to_i) , prompt: "~miles" %></span>
+            </div>
+            <div class="content-align">
+              <span class="content">Time&nbsp;<%= select_tag 'time', options_for_select(%w{0.5 1 2 5},
+                session[:time].to_i), prompt: "~hours" %></span>
+            </div>
+        </ul>
+    </ul>
+  <% end %>
+ <br>
+<div class="header"><i class="icon-sitemap"></i>&nbsp;&nbsp;&nbsp;Here are some suggestions!</div>
+
+<div id="pmu_list"><%= render partial: "pmus"  %></div>

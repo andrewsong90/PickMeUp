@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+andrew:
+  id: 1
+  provider: facebook
+  uid: 1
+  name: Andrew Song
+  oauth_token: oauth_token1
+  oauth_expires_at: 2013-04-20 16:03:55
+  address: MIT, Cambridge, MA
+
+vu:
+  id: 2
+  provider: facebook
+  uid: 2
+  name: Alex Vu
+  oauth_token: oauth_token2
+  oauth_expires_at: 2013-04-20 16:03:55
+  address: Williams

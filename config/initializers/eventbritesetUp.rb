@@ -1,0 +1,1 @@
+Eventbrite_CONFIG = YAML.load_file("#{::Rails.root}/config/eventbrite.yml")[::Rails.env]

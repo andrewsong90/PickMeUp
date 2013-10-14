@@ -1,0 +1,10 @@
+<!-- This is for rendering navbar of Genre -->
+<ul class="nav nav-pills nav-stacked" id='nav-two'>
+  <li class="nav-header">Events</li>
+  <li><a href="/events" class='genre_item'>All Events</a>
+  </li>
+  <% for i in 0..(genres.length-1) %>
+      <li class='genre_item'><a href="<%= "/events/genre/"+(genres[i].id).to_s %>"><%= genres[i].name %></a></li>
+  <% end %>
+
+</ul>

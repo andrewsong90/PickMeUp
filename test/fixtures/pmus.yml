@@ -1,0 +1,38 @@
+one:
+  id: 1
+  owner_id: 1
+  event_id: 1
+  datetime: 2013-04-25 18:42:43
+  location: MIT, Cambridge, MA
+  latitude: 1.5
+  longitude: 1.5
+  cab_sharing: false
+  car_sharing: true
+  pmu_type: car sharing
+  max_people: 5
+
+two:
+  id: 2
+  owner_id: 2
+  event_id: 1
+  datetime: 2013-04-25 19:42:43
+  location: Harvard Square, Cambridge
+  latitude: 1.51
+  longitude: 1.51
+  cab_sharing: false
+  car_sharing: true
+  pmu_type: uncommitted
+  max_people: 5
+
+three:
+  id: 3
+  owner_id: 3
+  event_id: 1
+  datetime: 2013-04-26 18:42:43
+  location: Times Square, New York
+  latitude: 74
+  longitude: 74
+  cab_sharing: true
+  car_sharing: true
+  pmu_type: uncommitted
+  max_people: 5

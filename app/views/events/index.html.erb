@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class='row-fluid'>
+    <div class='span2 well'>
+      <%= render "shared/nav" %>
+
+    </div>
+    <div class='span10'>
+      <% if current_organizer && !(current_organizer.eventbrite_id.nil?) %>
+          <div class='row-fluid'>
+            <div class='span2 well'>
+                <div class="event_brite"></div>
+                <a href='<%= import_events_organizer_path(current_organizer.id) %>' class="btn btn-info btn-right"><i class="icon-share"></i>&nbsp;Import</a>
+            </div>
+          </div>
+      <% end %>
+      <ul class="thumbnails">
+          <% for i in 0..(@events.length-1)%>
+              <% event=@events[i] %>
+              <% if (i%4==0) %>
+                <div class="row-fluid">
+              <% end %>
+              <div class="span3">
+                  <div class="thumbnail">
+                    <strong><div class="title"><%= event.name %></div></strong>
+                        <div class="photo_container">
+                          <a href='<%="/events/"+event.id.to_s%>' title="<%= "Click to see #{event.name}'s details" %>">
+                            <%= parse_image_tag event.filepicker_url %>
+                          </a>
+                        </div>
+                        <br>
+                        &nbsp;<i class="icon-map-marker icon-large"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span class="event_location"><%= " "+event.address %></span><br>
+                        &nbsp;<i class="icon-calendar icon-large"></i>&nbsp;&nbsp;<span class="event_location"><%= " "+event.format_datetime %></span>
+                    </div>
+              </div>
+              <% if (i%4==3) || (i==@events.length-1) %>
+                </div>
+              <% end %>
+          <% end %>
+      </ul>
+
+
+      </div>
+  </div>
+</div>

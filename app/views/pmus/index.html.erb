@@ -1,0 +1,90 @@
+<div class="container-fluid">
+  <div class='row-fluid'>
+    <div class='span2 well'>
+      <%= render "shared/nav"%>
+    </div>
+    <div class='span10'>
+
+      <div class="page-header"><h3>My Requests</h3></div>
+
+      <ul class="thumbnails">
+        <% for i in 0..(@joined_pmus.length-1)%>
+            <% event=@joined_pmus[i].event %>
+            <% if (i%4==0) %>
+                <div class="row-fluid">
+            <% end %>
+            <div class="span3">
+              <div class="thumbnail">
+                <div class="title">
+                  <%= event.name %>
+                    <div class="label label-blue2">Joined</div>
+                </div>
+                <div class="photo_container">
+                  <a href='<%="/events/"+event.id.to_s%>' title="<%= "Click to see #{event.name}'s details" %>">
+                    <%= parse_image_tag event.filepicker_url %>
+                  </a>
+                </div>
+                <div class="event_location"><span class="label label-info">Time</span><%= " "+event.format_datetime %></div>
+              </div>
+            </div>
+            <% if (i%4==3) || (i==@joined_pmus.length-1) %>
+                </div>
+            <% end %>
+        <% end %>
+      </ul>
+
+      <ul class="thumbnails">
+        <% for i in 0..(@requested_pmus.length-1)%>
+            <% event=@requested_pmus[i].event %>
+            <% if (i%4==0) %>
+                <div class="row-fluid">
+            <% end %>
+            <div class="span3">
+              <div class="thumbnail">
+                <div class="title">
+                  <%= event.name %>
+                  <div class="label label-orange-2">Requested</div>
+                </div>
+                <div class="photo_container">
+                  <a href='<%="/events/"+event.id.to_s%>' title="<%= "Click to see #{event.name}'s details" %>">
+                    <%= parse_image_tag event.filepicker_url %>
+                  </a>
+                </div>
+                <div class="event_location"><span class="label label-info">Time</span><%= " "+event.format_datetime %></div>
+              </div>
+            </div>
+            <% if (i%4==3) || (i==@requested_pmus.length-1) %>
+                </div>
+            <% end %>
+        <% end %>
+      </ul>
+
+      <ul class="thumbnails">
+        <% for i in 0..(@uncommitted_pmus.length-1)%>
+            <% event=@uncommitted_pmus[i].event %>
+            <% if (i%4==0) %>
+                <div class="row-fluid">
+            <% end %>
+            <div class="span3">
+              <div class="thumbnail">
+                <div class="title">
+                  <%= event.name %>
+                  <div class="label label-sky-2">Undecided</div>
+                </div>
+                <div class="photo_container">
+                  <a href='<%="/events/"+event.id.to_s%>' title="<%= "Click to see #{event.name}'s details" %>">
+                    <%= parse_image_tag event.filepicker_url %>
+                  </a>
+                </div>
+                <div class="event_location"><span class="label label-info">Time</span><%= " "+event.format_datetime %></div>
+              </div>
+            </div>
+            <% if (i%4==3) || (i==@uncommitted_pmus.length-1) %>
+                </div>
+            <% end %>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
+</div>

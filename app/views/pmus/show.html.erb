@@ -1,0 +1,91 @@
+<div class="container-fluid">
+  <div class='row-fluid'>
+    <div class='span2 well'>
+      <%= render "shared/nav"%>
+    </div>
+
+    <div class='span5 well'>
+      <%= render "shared/event" %>
+    </div>
+
+    <div class='span5 well'>
+      <div class='page-header'>
+        <h3><%= @pmu.owner.name + "'s Request" %></h3>
+      </div>
+      <%= render 'shared/pmuLabel' %>
+      <h3><%= @pmu.event.name %></h3>
+
+
+      <% if !@pmu.is_uncommitted? %>
+        <div class="header"><i class="icon-group"></i>&nbsp;&nbsp;Current Participants <a id="driving_modal_toggle2" class="btn btn-info"><%= @pmu.users.length.to_s + " / " + @pmu.max_people.to_s + " people" %></a> </div>
+
+              <div class="container">
+                <div id='driving_modal2' class="modal hide fade in" style="display: none; ">
+                    <div class="modal-header">
+                    <a class="close" data-dismiss="modal">×</a>
+                    <h3> Current Participants (max: <%= @pmu.max_people %> people)</h3>
+                  </div>
+                  <div class="modal-body">
+                    <ul>
+                        <% @pmu.users.each do |user| %>
+                            <% if (user.own_pmu?(@pmu)) && (@pmu.is_driving?)%>
+                                <li><span class="content"><%= @pmu.owner.name + " (driver)" %></span></li>
+                            <% else %>
+                            <li>
+                              <span class="content"><%= user.name %></span>
+                              <% if (current_user.own_pmu?(@pmu)) && (!user.own_pmu?(@pmu)) %>
+                                  <%= link_to "Remove",
+                                              remove_user_event_pmu_path(:event_id => @pmu.event.id, :id => @pmu.id, :user_id => user.id),
+                                              :method => :delete, :class => "btn btn-primary btn-right" %></li>
+                              <% end %>
+                            <% end %>
+                        <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+        <% end %>
+
+      <br>
+
+      <!-- Display joined users-->
+      <% @pmu.user_pmus.each do |joined_pmu| %>
+          <% if joined_pmu.is_confirmed? %>
+              <span class="label label-success">Confirmed</span>
+          <% else %>
+              <span class="label label-important">Not Confirmed</span>
+          <% end %>
+
+          <% if (joined_pmu.user_id == @pmu.owner_id) && (@pmu.is_driving?) %>
+              <span class="header"><strong><%=@pmu.owner.name%></strong> is driving from</span>
+          <% else %>
+              <span class="header"><strong><%= User.find(joined_pmu.user_id).name %></strong> is going to be at</span>
+          <% end %>
+
+
+          <br>
+          <ul>
+            <i class="icon-map-marker"></i>&nbsp;&nbsp;<%= joined_pmu.location %><br>
+            <i class="icon-calendar"></i>&nbsp;&nbsp;<%= joined_pmu.datetime %><br>
+          </ul>
+          <a href='<%= get_google_map_link(joined_pmu.latitude, joined_pmu.longitude) %>' target="_blank" title="Click to see the enlarged version">
+            <%= image_tag get_google_map_image_link(joined_pmu.latitude, joined_pmu.longitude) %>
+          </a>
+          <br><br>
+      <% end %>
+
+      <br>
+      <div class="button-align">
+        <!-- Only uncommitted users can join the requests. Drivers,the owner of the pmu, and already-joined members cannot join the PMU-->
+        <% if(!@pmu.is_owner?(current_user)) && (!current_user.is_joined?(@pmu)) && (!current_user.has_requested_pmu?(@pmu))%>
+            <% if (current_user.has_own_pmu?(@pmu.event.id)) && (current_user.get_own_pmu(@pmu.event.id).is_uncommitted?) %>
+                <a href='<%= add_requesting_user_event_pmu_path(:event_id=>@pmu.event.id, :id=>@pmu.id) %>' class="btn btn-primary">Request to Join</a>
+            <% end %>
+        <% end %>
+
+      </div>
+      <a href='<%= event_path(:id=>@pmu.event.id) %>' class="btn btn-info btn-right">Back</a>
+      <a href='<%= edit_event_pmu_path(:event_id => @pmu.event.id, :id => @pmu.id) %>' class="btn btn-primary btn-right">Edit</a>
+    </div>
+  </div>
+</div>

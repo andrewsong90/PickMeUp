@@ -1,0 +1,19 @@
+# Add application configuration variables here, as shown below.
+#
+# PUSHER_APP_ID: "2954"
+# PUSHER_KEY: 7381a978f7dd7f9a1117
+# PUSHER_SECRET: abdc3b896a0ffb85d373
+# STRIPE_API_KEY: EdAvEPVEC3LuaTg5Q3z6WbDVqZlcBQ8Z
+# STRIPE_PUBLIC_KEY: pk_BRgD57O8fHja9HxduJUszhef6jCyS
+development:
+  app_id: '167925503368121'
+  secret: '0b6d23af954e5a4837b9c25afd0e0a52'
+
+test:
+  app_id: '167925503368121'
+  secret: '0b6d23af954e5a4837b9c25afd0e0a52'
+
+production:
+  app_id: '150768691768381'
+  secret: 'cf91c3ff469c367a755929c92c5dae35'
+

@@ -1,0 +1,401 @@
+body {
+    margin-top: 100px;
+}
+
+
+
+.hideInfo {
+    display: none;
+}
+
+span.validationError{
+    color:Red;
+    font-size:10px;
+    display:block;
+}
+
+.row-fluid{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.label-green{
+    font-size: 24px;
+    height:19px;
+    margin: 5px 5px;
+    padding: 5px 5px;
+    background-color: #468847;
+}
+
+.label-blue{
+    font-size: 24px;
+    height:19px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #3a87ad;
+}
+
+.label-blue2{
+    font-size: 15px;
+    margin-top:5px;
+    padding: 5px 5px;
+    background-color: #2d6987;
+}
+
+.label-orange{
+    font-size: 24px;
+    height:19px;
+    margin: 5px 5px;
+    padding: 5px 5px;
+    background-color: #f89406;
+}
+
+.label-orange-2{
+    font-size: 15px;
+    margin: 5px 5px;
+    padding: 5px 5px;
+    background-color: #f89406;
+}
+
+.label-sky-2{
+    font-size: 15px;
+    margin: 5px 5px;
+    padding: 5px 5px;
+    background-color: #9FB6CD;
+}
+
+.brand {
+    font-family: "PacificoRegular";
+}
+.navbar-inner{
+    background:none;
+    filter:none;
+    border:none;
+    box-shadow:none;
+
+    padding-right:0px;
+    padding-left:0px;
+
+    background-color: #236B8E;
+}
+
+.navbar .divider-vertical {
+    height: 80px;
+    border-right: 1px solid #236B8E;
+    border-left: 1px solid #236B8E;
+}
+
+.navbar .nav > li >a{
+    color: #fff;
+    text-shadow: none;
+}
+
+
+.navbar .nav > li > a:hover{
+    color: #e6e6e6;
+}
+.navbar .nav {
+    height: 80px;
+}
+
+.nav a {
+    margin-top: 20px;
+}
+
+.nav .nav-header {
+    font-size: 18px;
+    color:#FF9900;
+}
+
+.navbar .brand{
+    font-size: 30px;
+}
+.navbar .brand_img {
+    display: inline-block;
+    width: 70px;
+    height:70px;
+    padding: 0;
+    margin: 10px 10px 0 0;
+    background: url(/assets/pickup.png) no-repeat;
+}
+
+.event_brite {
+    display: inline-block;
+    width: 120px;
+    height: 50px;
+    background: url(/assets/eventbrite.jpg) no-repeat;
+}
+
+.mobile {
+    display: inline-block;
+    width: 925px;
+    height: 370px;
+    background: url(/assets/mobile.jpg) no-repeat;
+}
+
+.mobile_container{
+    width: 925px;
+    height: 370px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.csv_container{
+    width:330px;
+    height: 260px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.presentation{
+    display: inline-block;
+    width:800px;
+    height: 580px;
+    background: url(/assets/presentation.png) no-repeat;
+}
+
+.presentation_container{
+    position: relative;
+    width:800px;
+    height: 580px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.team{
+    display: inline-block;
+    width:910px;
+    height: 650px;
+    text-align: center;
+    background: url(/assets/team.jpg) no-repeat;
+}
+
+.team_container{
+    position: relative;
+    width:910px;
+    height: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.csv {
+    display: inline-block;
+    width:330px;
+    height: 260px;
+    background: url(/assets/csv.png) no-repeat;
+}
+
+.pickmeup{
+    display: inline-block;
+    width: 55px;
+    height: 65px;
+    background: url(/assets/pickup.png) no-repeat;
+}
+.modal-body > ul > li {
+    margin: 15px 0px;
+}
+
+.list {
+    font-size: 17px;
+    font-family: "Arial";
+    margin: 5px 0px;
+}
+
+.title {
+    margin: 10px auto;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'WalkwayBlackRegular';
+    height: 50px;
+}
+
+.dropdown-menu a {
+    margin: 10px;
+    padding: 10px 0px 10px 0px;
+}
+
+.thumbnail {
+    height: 370px;
+}
+
+.thumbnail:hover{
+    height: 370px;
+    /* Firefox */
+  -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+  /* Safari+Chrome */
+  -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  /* Opera */
+  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+
+}
+
+.genre_item:hover, .genra_item:focus{
+    color: Blue;
+  -moz-box-shadow:5px 5px 7px rgba(0,0,0,.7);
+  -webkit-box-shadow: 5px 5px 7px rgba(0,0,0,.7);
+  box-shadow:5px 5px 7px rgba(0,0,0,.7);
+  -webkit-transform: scale(1.25);
+  -moz-transform: scale(1.25);
+  -o-transform: scale(1.25);
+  position:relative;
+  z-index:5;
+}
+
+.image_scaleX{
+    width: 100%;
+}
+
+.photo_container{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    width: 200px;
+    height: 220px;
+}
+
+.tab{
+    text-indent: 30px;
+}
+
+.btn-right{
+    float: right;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+textarea {
+    height: 200px;
+    width: 400px;
+}
+
+input[type="text"]{
+    margin-bottom: 0;
+}
+
+input[type="checkbox"]{
+    margin: 0 0 0 0;
+}
+
+select{
+    width: 130px;
+}
+
+.Italics{
+    font-style: italic;
+}
+.content{
+    font-size:16px;
+}
+
+.content-align{
+   height:30px;
+   margin-top: 7px;
+}
+
+.content-align2{
+    height:20px;
+    margin-top: 7px;
+}
+
+.inner{
+    position: absolute;
+    top: 50%;
+}
+
+.event_location{
+    color: #252525;
+    font-size: 19px;
+    font-family: "bebasneueregular";
+
+}
+
+
+
+.ui-tooltip {
+    font-size: 20px;
+}
+
+.button-align {
+    float:left;
+}
+
+.header{
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: 680;
+}
+
+.font_ubuntu{
+    margin: 20px;
+    font-size: 25px;
+    font-family: UbuntuTitle;
+    color: #002a80;
+}
+
+.font_walkway{
+    font-family: 'WalkwayBlackRegular';
+}
+
+.page-header {
+    font-family: 'BebasNeueRegular';
+    text-align: center;
+}
+
+.margin-left{
+    margin-left: 30px;
+}
+
+.gmaps .download {
+    float: right; }
+.gmaps #gmaps-canvas1, #gmaps-canvas2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    height: 400px;
+    width: 540px;
+    -moz-box-shadow: 0px 1px 15px #888;
+    -webkit-box-shadow: 0px 1px 15px #888;
+    box-shadow: 0px 1px 15px #888;
+    -moz-border-radius: 3px; }
+
+.gmaps #gmaps-canvas1 img {
+    max-width: none;
+}
+.gmaps #gmaps-canvas2 img {
+    max-width: none;
+}
+
+.gmaps #results {
+    color: #555;
+    padding-top: 10px; }
+.gmaps .input-road-radius input {
+    width: 2em;
+    margin-left: 10px;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #efefef;
+    font-size: 1em;
+    color: #555;
+    font-weight: bold;
+    vertical-align: middle;
+    text-align: center; }
+.gmaps .input-gmaps-autocomplete {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #ccc; }
+.gmaps .input-gmaps-autocomplete input {
+    width: 500px; }
+.gmaps .input-gmaps-autocomplete #gmaps-output-latitude, .gmaps .input-gmaps-autocomplete #input #gmaps-output-longitude {
+    color: green; }
+

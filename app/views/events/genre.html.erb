@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class='row-fluid'>
+    <div class='span2 well'>
+      <%= render "shared/nav" %>
+    </div>
+    <div class='span10'>
+      <ul class="thumbnails">
+        <% for i in 0..(@events.length-1)%>
+            <% event=@events[i] %>
+            <% if (i%4==0) %>
+                <div class="row-fluid">
+            <% end %>
+            <div class="span3">
+              <div class="thumbnail">
+                <h4><%= event.name %></h4>
+                  <div class="photo_container">
+                    <a href=<%="/events/"+event.id.to_s%>>
+                      <%= parse_image_tag event.filepicker_url %>
+                    </a>
+                  </div>
+                  <div class="event_location"><%= event.address %></div>
+                  <div class="event_location"><%= event.DateTime %></div>
+                </div>
+
+              </div>
+            <% if (i%4==3) || (i==@events.length-1) %>
+                </div>
+            <% end %>
+        <% end %>
+      </ul>
+
+
+    </div>
+  </div>
+</div>

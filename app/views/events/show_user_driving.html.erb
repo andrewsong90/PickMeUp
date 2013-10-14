@@ -1,0 +1,88 @@
+
+<div class="header">You have requested for </div>
+<%= render 'shared/pmuLabel' %>
+<br>
+
+<div class="header"><i class="icon-book"></i>&nbsp;&nbsp;&nbsp;<strong>Your Trip</strong></div>
+    <ul>
+      <div class="header"><i class="icon-calendar"></i>&nbsp;&nbsp;<%= @pmu.format_datetime %></div>
+      <div class="header"><i class="icon-map-marker"></i> &nbsp;&nbsp;<%= @pmu.location %></div>
+    </ul>
+<br>
+
+<%= render "shared/pmu_confirmation" %>
+
+<br>
+
+<div class="header"><i class="icon-group"></i>&nbsp;&nbsp;&nbsp;<strong>Participants</strong></div>
+<div class="header">
+  <ul>
+    Current  <a id="driving_modal_toggle" class="btn btn-info"><%= @pmu.users.length.to_s + " / " + @pmu.max_people.to_s + " people" %></a>
+
+    Requested  <a id="driving_request_join_modal_toggle" class="btn btn-info"><%= @pmu.requesting_users.length.to_s + " people" %></a>
+  </ul>
+</div>
+
+        <div class="container">
+          <div id='<%="driving_modal"%>' class="modal hide fade in" style="display: none; ">
+            <div class="modal-header">
+              <a class="close" data-dismiss="modal">×</a>
+              <h3> Current Participants</h3>
+            </div>
+            <div class="modal-body">
+              <ul>
+                  <% @pmu.users.each do |user| %>
+                      <% if (user.own_pmu?(@pmu)) && (@pmu.is_driving?)%>
+                              <li><span class="content"><%= @pmu.owner.name + " (driver)" %></span></li>
+                      <% else %>
+                      <li>
+                        <span class="content"><%= user.name %></span>
+
+                        <% if (current_user.own_pmu?(@pmu)) && (!user.own_pmu?(@pmu)) %>
+                            <%= link_to "Remove",
+                                        remove_user_event_pmu_path(:event_id => @pmu.event.id, :id => @pmu.id, :user_id => user.id),
+                                        :method => :delete, data: { confirm: "Are you sure?"},:class => "btn btn-primary btn-right" %></li>
+                        <% end %>
+                      <% end %>
+                  <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+  <div class="container">
+    <div id="driving_request_join_modal" class="modal hide fade in" style="display: none; ">
+      <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3> Requested Participants</h3>
+      </div>
+      <div class="modal-body">
+        <% @pmu.requesting_users.each do |user| %>
+            <li>
+              <span class="content"><%= user.name %></span>
+              <%= link_to remove_requesting_user_event_pmu_path(:event_id => @event.id, :id => @pmu.id, :user_id => user.id),
+                          :method => :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning btn-right" do %>
+                <i class="icon-remove"></i> Remove
+              <% end %>
+
+              <%= link_to "Accept",
+                               add_user_event_pmu_path(:event_id => @event.id, :id => @pmu.id, :user_id => user.id),
+                               :class => "btn btn-info btn-right" %>
+              <%= link_to "Details",
+                          event_pmu_path(:event_id => @event.id, :id => user.myPmus.where(:event_id => @event.id).first), :class =>"btn btn-primary btn-right"
+              %>
+            </li>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+<br>
+
+<%= link_to event_pmu_path(:event_id => @pmu.event.id, :id => @pmu.id), :method => :delete,
+            data: { confirm: 'Are you sure?' }, :class => "btn btn-warning btn-right" do %>
+    <i class="icon-remove"></i> Cancel
+<% end %>
+
+<%= link_to "Details", event_pmu_path(:event_id => @pmu.event.id, :id => @pmu.id), :class => "btn btn-primary btn-right" %>

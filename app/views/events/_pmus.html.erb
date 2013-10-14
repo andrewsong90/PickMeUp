@@ -1,0 +1,81 @@
+
+  <% for i in 0..(@potential_pmus.length-1) %>
+      <% pmu=@potential_pmus[i] %>
+      <div class="container">
+        <div id='<%="pmu_modal_"+i.to_s%>' class="modal hide fade in" style="display: none; ">
+          <div class="modal-header">
+            <a class="close" data-dismiss="modal">×</a>
+            <h3><%= pmu.owner.name+" 's Request"%></h3>
+          </div>
+          <div class="modal-body">
+
+            <% if pmu.is_driving? %>
+                <div class="label label-blue2">Car Driving</div>
+            <% else %>
+                <% if pmu.car_sharing %>
+                    <div class="label label-orange">Car Sharing</div>
+                <% end %>
+
+                <% if pmu.cab_sharing %>
+                    <div class="label label-green">Cab Sharing</div>
+                <% end %>
+            <% end %><br>
+            <ul>
+              <i class="icon-calendar"></i>&nbsp;&nbsp; <strong><%= pmu.datetime%></strong><br>
+              <i class="icon-user"></i>&nbsp;&nbsp; <strong><%=pmu.max_people %></strong><br>
+              <i class="icon-map-marker"></i>&nbsp;&nbsp;<strong> <%= pmu.location %></strong>
+            </ul>
+            <br>
+            <a href='<%= get_google_map_link(pmu.latitude, pmu.longitude) %>' target="_blank" title="Click to see the enlarged version">
+              <%= image_tag get_google_map_image_link(pmu.latitude, pmu.longitude) %>
+            </a>
+            <br>
+          </div>
+          <div class="modal-footer">
+            <div class="btn-right">
+              <!-- Only uncommitted users can join the requests. Drivers,the owner of the pmu, and already-joined members cannot join the PMU-->
+              <!-- TODO: Why doesn't this work? Work on it later-->
+              <% if(!current_user.own_pmu?(pmu)) %>
+                  <% if (!pmu.requesting_users.include?(current_user))&&(!pmu.user_pmus.include?(current_user)) %>
+                      <a href='<%= add_requesting_user_event_pmu_path(:event_id=>pmu.event.id, :id=>pmu.id) %>' class="btn btn-primary">Request to Join</a>
+                  <% end %>
+              <% end %>
+              <a href='<%= event_path(:id=>pmu.event.id) %>' class="btn btn-success">Back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <% if current_user.has_requested_pmu?(pmu) %>
+          <ul>
+            <div class="list">
+              <i class="icon-user"></i>&nbsp;&nbsp;<span class="label label-warning">Requested</span>
+              <%= display_text(pmu).html_safe %><br>
+              <a href="#" class="btn btn-warning btn-right">Cancel</a>
+              <a onclick="pmuToggle(<%= i %>)"
+                 class="btn btn-info btn-right" target="_blank">Details</a>
+            </div>
+          </ul>
+      <% elsif @pmu.requesting_users.include?(pmu.owner) %>
+
+
+      <% else %>
+          <ul>
+            <div class="list">
+              <i class="icon-user"></i>&nbsp;&nbsp;<%= display_text(pmu).html_safe %><br>
+              <ul>
+                <i class="icon-map-marker"></i>&nbsp;&nbsp;&nbsp;<%= pmu.location + " (" %><span class="Italics"><%= pmu.distance_from(@pmu).round(1).to_s + " miles)" %></span><br>
+                <i class="icon-calendar"></i>&nbsp;&nbsp;<%= pmu.datetime %>
+                <a onclick="pmuToggle(<%= i %>)"
+                   class="btn btn-info btn-right" target="_blank">Details</a>
+              </ul>
+            </div>
+          </ul>
+      <% end %>
+  <% end %>
+
+  <p><%= will_paginate @potential_pmus %></p>
+
+

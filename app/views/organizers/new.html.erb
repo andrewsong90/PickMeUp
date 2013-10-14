@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div class='row-fluid'>
+    <div class='span2 well'>
+      <%= render "shared/nav" %>
+    </div>
+    <div class='span5 well'>
+
+    <div class="page-header"><h3>Sign Up as Event Organizer</h3></div>
+    <%= form_for @organizer do |f| %>
+
+      <% if @organizer.errors.any? %>
+        <div class="error_messages">
+          <h2>Form is invalid</h2>
+          <ul>
+            <% @organizer.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <p>
+          <h4>Name</h4>
+          <%= f.text_field :name, id: "org_name" %>
+      </p>
+
+      <p>
+          <h4>Email</h4>
+        <%= f.text_field :email, id: "org_email" %>
+      </p>
+      <p>
+          <h4>Password</h4>
+        <%=  f.password_field :password, id:"org_password" %>
+      </p>
+
+      <p>
+          <h4>Password Confirmation</h4>
+        <%= f.password_field :password_confirmation, id:"org_password_confirmation" %>
+      </p>
+
+      <p>
+        <h4>Company/Affiliation</h4>
+        <%= f.text_field :affiliation, id:"org_affiliation" %>
+      </p>
+
+       <p>
+         <h4> EventrBrite id </h4>
+          <%= f.text_field :eventbrite_id %>
+       </p>
+
+      <p>
+        <%= f.submit "Sign Up", :class => "btn btn-primary" %>
+      </p>
+    <% end %>
+    </div>
+  </div>
+</div>

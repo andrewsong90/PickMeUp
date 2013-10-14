@@ -1,0 +1,37 @@
+<!-- When showing the contents of the event-->
+
+<% organizer=@event.organizer %>
+
+<div class="page-header"><h2><%= @event.name%></h2></div>
+<%= parse_image_tag @event.filepicker_url %>
+<br><br>
+<p>
+    <span class="header"><i class="icon-user"></i>&nbsp;&nbsp;<strong>Organizer</strong></span>
+    &nbsp;<span class="content"><%= organizer.affiliation %></span>
+</p>
+<p>
+    <span class="header"><i class="icon-comment"></i>&nbsp;&nbsp;<strong>Description</strong></span><br>
+    <ul>
+        <span class="content"><%= @event.description %></span>
+    </ul>
+</p>
+
+<p>
+    <span class="header"><i class="icon-calendar"></i>&nbsp;&nbsp;<strong>Time</strong></span>
+    &nbsp;<span class="content"><%= @event.format_datetime %></span>
+</p>
+
+<p>
+    <span class="header"><i class="icon-map-marker"></i>&nbsp;&nbsp;<strong>Address</strong></span>
+    &nbsp;<span class="content"><%= @event.address %></span>
+</p>
+
+<p>
+  <div class="gmaps"><div id='gmaps-canvas1'></div></div>
+</p>
+<p>
+    <span class="header"><i class="icon-envelope"></i>&nbsp;&nbsp;<strong>Contact</strong></span><br>
+    <ul>
+        <span class="content">For more information, please contact <strong><%= organizer.name %></strong> at <strong><%= organizer.email %></strong></span>
+    </ul>
+</p>

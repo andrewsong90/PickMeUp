@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class='row-fluid'>
+    <div class='span2 well'>
+      <%= render "shared/nav"%>
+    </div>
+    <div class='span5 well'>
+      <%=  render "shared/event" %>
+    </div>
+
+    <div class='span5 well'>
+        <div class="page-header"><h3>Create new Requests!</h3></div><br>
+
+      <form action="<%= "/events/"+@event.id.to_s+"/pmus" %>" method="post" accept-charset="UTF-8">
+
+        <input type="hidden" name="authenticity_token" value='"<%=csrf_meta_tag%>"'>
+        <div class="header"><i class="icon-bookmark"></i>&nbsp;&nbsp;<strong>Your Choice</strong></div>
+        <input type="checkbox" id="car_share_toggle" name="sharing_type" value=<%= Pmu::PMU_CarShare%> /> I want to share a car-ride!<br><br>
+        <input type="radio" id="drive_radio" name="car_share_type"  disabled value=<%= Pmu::PMU_CarDrive %>/> I want to drive!<br><br>
+        <input type="radio" id="ride_radio" name="car_share_type" disabled value=<%= Pmu::PMU_CarRide %>/> I want to request for a ride!<br><br>
+
+        <input type="checkbox" id="cab_share_toggle" name="sharing_type" value=<%= Pmu::PMU_CabShare%> /> I want to share a cab!<br><br>
+        <input type="checkbox" id="no_share_toggle" name="sharing_type" value=<%= Pmu::PMU_NotShare%> /> I will think of it later on!<br><br>
+
+        <div class="header"><i class="icon-map-marker"></i>&nbsp;&nbsp;<strong>Location</strong></div>
+
+        <%= render "shared/gmaps_pmu" %>
+
+        <div class="header"><i class="icon-group"></i>&nbsp;&nbsp;<strong>Max People</strong></div>
+        <input id="max_people" type="text" name="max_people" size="30" />
+        <span id="info_max_people" class="hideInfo"></span>
+
+        <br><br>
+
+        <div class="header"><i class="icon-calendar"></i>&nbsp;&nbsp;<strong>When is your pick up?</strong></div>
+        <input class="datetime" type="text" name="datetime" size="30" /><br><br>
+
+        <input class="btn btn-primary btn-right" type="submit" name="commit" value="Submit" />
+      </form>
+
+    </div>
+  </div>
+</div>

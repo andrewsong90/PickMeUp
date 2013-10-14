@@ -1,0 +1,16 @@
+<div id='welcome'>
+  <h1 style="border: 3px solid blue;">Welcome to Pick-Me-Up!</h1>
+  <p class='speech'>Begin by clicking on me log-in to your Facebook</p>
+  <!--<%= link_to image_tag('fb_icon.png'), "/auth/facebook", id: "sign_in" %>-->
+</div>
+
+<% if current_user %>
+  <div ng-controller='PMUCtrl' id='friend_list'>
+    <button ng-click='get_fb_friends()'>Get Friends</button>
+      <ul>
+        <li ng-repeat='friend in friends'>
+          {{friend.name}}
+        </li>
+      </ul>
+  </div>
+<% end %>

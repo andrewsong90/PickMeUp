@@ -1,0 +1,62 @@
+<!-- When Creating an event -->
+<%= form_for [current_organizer,@event], :html => {:multipart => true}  do |f| %>
+
+      <p>
+        <div class="header"><i class="icon-bookmark"></i>&nbsp;&nbsp;<strong>Title</strong></div>
+        <%= f.text_field(:name)%>
+      </p>
+      <p>
+        <div class="header"><i class="icon-play-circle"></i>&nbsp;&nbsp;<strong>Genre</strong></div>
+        <%= f.select "genre",options_from_collection_for_select(genres, "id", "name"), :prompt => "Select genre"%>
+      </p>
+      <p>
+        <div class="header"><i class="icon-comment"></i>&nbsp;&nbsp;<strong>Description</strong></div>
+        <%= f.text_area :description %>
+      </p>
+
+    <p>
+    <div class="header"><i class="icon-map-marker"></i>&nbsp;&nbsp;<strong>Location</strong></div>
+
+      <%= render "shared/gmaps" %>
+    </p>
+
+    <p>
+    <div class="header"><i class="icon-calendar"></i>&nbsp;&nbsp;<strong>Time</strong></div>
+      <%= f.text_field :DateTime, class: 'datetime' %>
+    </p>
+
+
+    <p>
+      <div class="header"><i class="icon-picture"></i>&nbsp;&nbsp;<strong>Upload a photo</strong></div>
+      <%= f.filepicker_field :filepicker_url %>
+    </p>
+
+    <p>
+    <div class="header"><i class="icon-briefcase"></i>&nbsp;&nbsp;<strong>Upload a CSV file</strong>
+      &nbsp;&nbsp;<a href="#" id="about_csv_modal_toggle" title="What's this?"><i class="icon-question-sign"></i></a>
+    </div>
+      <%= f.file_field :file %>
+    </p>
+
+    <p>
+      <%= f.submit :class=>"btn btn-info"%>
+    </p>
+<% end %>
+
+<div class="container">
+  <div id="about_csv_modal" class="modal hide fade in" style="display: none; ">
+    <div class="modal-header">
+      <a class="close" data-dismiss="modal">×</a>
+      <div class="header">What is <strong>CSV file</strong>?</div>
+    </div>
+    <div class="modal-body">
+      <p class="tab">
+        This is a CSV file with all the ticket S/N of the event attendees. With this data, we can verify the event attendees
+        and help them wither their requests. Column title should be <strong>number</strong> and all the S/N should be in the same column
+      </p>
+      <div class="csv"></div>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </div>
+</div>
