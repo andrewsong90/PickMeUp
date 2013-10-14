@@ -1,7 +1,7 @@
 Dir.glob("./lib/*.{rb}").each { |file| require file } # require each file from lib directory
 require File.expand_path('../boot', __FILE__)
 require 'csv'
-#require 'iconv'
+require 'iconv'
 require 'rails/all'
 
 if defined?(Bundler)
