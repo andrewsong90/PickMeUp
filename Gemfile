@@ -5,6 +5,8 @@ gem 'rails', '3.2.12'
 # integrating with eventbrite
 gem'eventbrite-client'
 
+gem 'rake', '10.1.0'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
